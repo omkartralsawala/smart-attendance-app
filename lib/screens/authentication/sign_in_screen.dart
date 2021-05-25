@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_attendance_app/providers/auth.dart';
-import 'package:smart_attendance_app/widgets/appbar.dart';
+import 'package:smart_attendance_app/widgets/appbar/appbar.dart';
 
 import '../../widgets/buttons/social_sign_in_button.dart';
 import '../../widgets/buttons/sign_in_button.dart';

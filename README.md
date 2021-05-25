@@ -2,6 +2,11 @@
 
 Smart Attendance App
 
+1.0.0+3
+course screen added
+ui improvements
+setting up code for nfc enable
+
 v1.0.0+2
 live data
 create course

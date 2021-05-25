@@ -6,6 +6,7 @@ import 'package:smart_attendance_app/services/api_path.dart';
 abstract class FirestoreDatabase {
   Future<void> createCourse(Course course);
   Future<void> setUser(UserModel user);
+  Future<void> updateCourse(Course course);
   Stream<List<Course>> streamCourses();
 }
 
@@ -41,7 +42,11 @@ class Database implements FirestoreDatabase {
 
   @override
   Future<void> setUser(UserModel user) async {
-    DocumentReference _docRef = _instance.doc(ApiPath.user(uid: user.uid));
+    DocumentReference _docRef = _instance.doc(ApiPath.faculty(uid: user.uid));
     _set(_docRef.path, user.toMap());
   }
+
+  @override
+  Future<void> updateCourse(Course course) async =>
+      await _update(ApiPath.course(course.id!), course.toMap());
 }

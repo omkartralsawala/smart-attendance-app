@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_attendance_app/widgets/appbar.dart';
+import 'package:smart_attendance_app/widgets/appbar/appbar.dart';
 
 import '../../widgets/forms/email_register.dart';
 

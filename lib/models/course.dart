@@ -1,13 +1,11 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Course {
   final String? id;
   final String name;
   final String code;
-  final String? startTime;
-  final String? endTime;
+  final String startTime;
+  final String endTime;
   final String teacherId;
   Course({
     this.id,
@@ -57,19 +55,6 @@ class Course {
       teacherId: map['teacherId'],
     );
   }
-
-  // factory Course.fromSnapshot(DocumentSnapshot doc) {
-  //   Map<String, dynamic>? data = doc.data() as Map<String, dynamic>;
-  //   print(data['code']);
-  //   return Course(
-  //     startTime: "00:00:00",
-  //     endTime: dat,
-  //     code: data['code'],
-  //     id: "1234",
-  //     name: "Maths",
-  //     teacherId: "teacherId 1",
-  //   );
-  // }
 
   String toJson() => json.encode(toMap());
 

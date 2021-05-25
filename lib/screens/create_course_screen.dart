@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_attendance_app/models/course.dart';
 import 'package:smart_attendance_app/models/user.dart';
 import 'package:smart_attendance_app/providers/database.dart';
-import 'package:smart_attendance_app/widgets/appbar.dart';
+import 'package:smart_attendance_app/widgets/appbar/appbar.dart';
 import 'package:smart_attendance_app/widgets/buttons/submit_button.dart';
 import 'package:smart_attendance_app/widgets/text_fields/custom_text_field.dart';
 
@@ -65,7 +65,7 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
   void updateStartTime(TimeOfDay time) => setState(() => startTime = time);
   void updateEndTime(TimeOfDay time) => setState(() => endTime = time);
 
-  Future<void> _showStartTimePicker(
+  Future<void> _showTimePicker(
     TimeOfDay timeOfDay,
     void Function(TimeOfDay) handler,
   ) async {
@@ -92,7 +92,7 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
         ),
         IconButton(
           icon: Icon(Icons.access_time),
-          onPressed: () => _showStartTimePicker(time, handler),
+          onPressed: () => _showTimePicker(time, handler),
         ),
       ],
     );
