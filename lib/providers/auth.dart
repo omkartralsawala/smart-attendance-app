@@ -24,7 +24,6 @@ class Auth implements AuthBase {
     }
     return UserModel(
       uid: user.uid,
-      imageUrl: user.photoURL,
       name: user.displayName,
       email: user.email,
     );

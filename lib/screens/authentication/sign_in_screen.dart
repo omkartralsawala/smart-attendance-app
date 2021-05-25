@@ -8,7 +8,6 @@ import 'package:smart_attendance_app/widgets/appbar.dart';
 import '../../widgets/buttons/social_sign_in_button.dart';
 import '../../widgets/buttons/sign_in_button.dart';
 import '../../screens/authentication/email_sign_in_screen.dart';
-import '../../services/api_path.dart';
 
 class SignInPage extends StatefulWidget {
   static const routeName = "/sign-in-page";

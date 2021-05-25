@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../screens/landing_screen.dart';
-import 'package:smart_attendance_app/widgets/appbar.dart';
 
 class EntryScreen extends StatelessWidget {
   @override
