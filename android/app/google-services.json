@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "524142545180-1nafomlts1d2odao4o4j37igm12f2klj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edithautotech.smart_attendance_app",
+            "certificate_hash": "2a76e2119ac94eb027022d3b6114d4a1ec5ccdcd"
+          }
+        },
+        {
           "client_id": "524142545180-nltoqfgbgenmjv67bpgj89nbosadc2j7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
