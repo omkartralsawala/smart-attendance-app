@@ -2,6 +2,11 @@
 
 Smart Attendance App
 
+1.0.0+4
+NFC ready 
+Student Flow and UI Completed
+awaiting testing on real card
+
 1.0.0+3
 course screen added
 ui improvements

@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nfc_in_flutter/nfc_in_flutter.dart';
+import 'package:nfc_manager/nfc_manager.dart';
+// import 'package:nfc_manager/platform_tags.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_attendance_app/models/course.dart';
 import 'package:smart_attendance_app/providers/database.dart';
 import 'package:smart_attendance_app/widgets/appbar/appbar.dart';
 import 'package:smart_attendance_app/widgets/ripple_animation.dart';
 
-class CourseScreen extends StatefulWidget {
+class FacultyCourseScreen extends StatefulWidget {
   final Course course;
 
-  CourseScreen({Key? key, required this.course}) : super(key: key);
+  FacultyCourseScreen({Key? key, required this.course}) : super(key: key);
 
   @override
-  _CourseScreenState createState() => _CourseScreenState();
+  _FacultyCourseScreenState createState() => _FacultyCourseScreenState();
 }
 
-class _CourseScreenState extends State<CourseScreen> {
+class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
   late TimeOfDay startTime;
   late TimeOfDay endTime;
+  dynamic tagData;
   final String today = DateTime.now().toString().split(" ")[0];
+  final NfcManager _instance = NfcManager.instance;
   bool _isLoading = false;
   bool _sensorEnabled = false;
+  bool _supportsNFC = false;
 
   void updateStartTime(TimeOfDay time) => setState(() => startTime = time);
   void updateEndTime(TimeOfDay time) => setState(() => endTime = time);
@@ -76,6 +82,37 @@ class _CourseScreenState extends State<CourseScreen> {
       startTime = returnTimeOfDay(widget.course.startTime);
       endTime = returnTimeOfDay(widget.course.endTime);
     });
+
+    NFC.isNDEFSupported.then((bool isSupported) {
+      setState(() {
+        _supportsNFC = isSupported;
+      });
+    });
+  }
+
+  void startNfcSession() async {
+    print(await _instance.isAvailable());
+    print(_supportsNFC);
+    if (!_supportsNFC) {
+      Fluttertoast.showToast(msg: "PNFC not supported");
+    }
+
+    bool supported = await NFC.isNDEFSupported;
+    print(supported);
+    NFC.readNDEF(
+      once: true,
+      alertMessage: "Hryyyyy",
+      readerMode: NFCNormalReaderMode(),
+    );
+    _instance.startSession(onDiscovered: (NfcTag tag) async {
+      setState(() {
+        tagData = tag.data;
+      });
+    });
+  }
+
+  void stopNfcSession() {
+    _instance.stopSession();
   }
 
   @override
@@ -83,13 +120,16 @@ class _CourseScreenState extends State<CourseScreen> {
     print(today);
     final ThemeData theme = Theme.of(context);
     return Scaffold(
-      appBar: constantAppBar(actionWidgets: [
-        if (_timeUpdated)
-          IconButton(
-            onPressed: _submit,
-            icon: Icon(Icons.done),
-          )
-      ]),
+      appBar: constantAppBar(
+        showBackButton: true,
+        actionWidgets: [
+          if (_timeUpdated)
+            IconButton(
+              onPressed: _submit,
+              icon: Icon(Icons.done),
+            )
+        ],
+      ),
       body: SafeArea(
         child: !_isLoading
             ? Column(
@@ -192,11 +232,20 @@ class _CourseScreenState extends State<CourseScreen> {
                   Expanded(
                     flex: 5,
                     child: Center(
-                      child: _sensorEnabled
+                      child: _sensorEnabled && tagData == null
                           ? RipplesAnimation()
-                          : Text(
-                              "Attendance",
-                              style: theme.textTheme.headline4 ,
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Today's attendance length"),
+                                // Spacer(),
+                                SizedBox(height: 10),
+                                Text(
+                                  "Attendance",
+                                  style: theme.textTheme.headline4,
+                                ),
+                                if (tagData != null) Text(tagData),
+                              ],
                             ),
                     ),
                   )
@@ -208,12 +257,16 @@ class _CourseScreenState extends State<CourseScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          print("Enable NFC Sensor on click");
+          if (_sensorEnabled) {
+            stopNfcSession();
+          } else {
+            startNfcSession();
+          }
           setState(() => _sensorEnabled = !_sensorEnabled);
         },
         elevation: 9,
         tooltip: "Will start NFC attendance",
-        label: Text("Start Attendance"),
+        label: Text("${_sensorEnabled ? "Stop" : "Start"} Attendance"),
         icon: Icon(Icons.people),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

@@ -205,6 +205,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  nfc_in_flutter:
+    dependency: "direct main"
+    description:
+      name: nfc_in_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.5"
   nfc_manager:
     dependency: "direct main"
     description:

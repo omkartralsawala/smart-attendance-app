@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/services.dart';
-import 'package:smart_attendance_app/providers/auth.dart';
 import 'package:smart_attendance_app/widgets/appbar/appbar.dart';
 
-import '../../widgets/buttons/social_sign_in_button.dart';
 import '../../widgets/buttons/sign_in_button.dart';
 import '../../screens/authentication/email_sign_in_screen.dart';
 
 class SignInPage extends StatefulWidget {
   static const routeName = "/sign-in-page";
+  final String userType;
+
+  const SignInPage({Key? key, required this.userType}) : super(key: key);
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -18,29 +16,30 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   bool _isLoading = false;
 
-  void _showSignInError(BuildContext context, PlatformException exception) {
-    Fluttertoast.showToast(msg: exception.message.toString());
-  }
+  // void _showSignInError(BuildContext context, PlatformException exception) {
+  //   Fluttertoast.showToast(msg: exception.message.toString());
+  // }
 
-  Future<void> _signInWithGoogle(BuildContext context) async {
-    try {
-      setState(() => _isLoading = true);
-      final auth = Provider.of<Auth>(context, listen: false);
-      await auth.signInWithGoogle();
-    } on PlatformException catch (e) {
-      if (e.code != 'ERROR_ABORTED_BY_USER') {
-        _showSignInError(context, e);
-      }
-    } finally {
-      setState(() => _isLoading = false);
-    }
-  }
+  // Future<void> _signInWithGoogle(BuildContext context) async {
+  //   try {
+  //     setState(() => _isLoading = true);
+  //     final auth = Provider.of<Auth>(context, listen: false);
+  //     await auth.signInWithGoogle();
+  //   } on PlatformException catch (e) {
+  //     if (e.code != 'ERROR_ABORTED_BY_USER') {
+  //       _showSignInError(context, e);
+  //     }
+  //   } finally {
+  //     setState(() => _isLoading = false);
+  //   }
+  // }
 
   void _signInWithEmail(BuildContext context) {
-    Navigator.of(context).push(
+    Navigator.push(
+      context,
       MaterialPageRoute<void>(
         fullscreenDialog: true,
-        builder: (context) => EmailSignInPage(),
+        builder: (context) => EmailSignInPage(userType: widget.userType),
       ),
     );
   }
@@ -71,25 +70,6 @@ class _SignInPageState extends State<SignInPage> {
             ),
           ),
           Spacer(flex: 2),
-          Expanded(
-            child: SocialSignInButton(
-              assetName: "assets/images/google-logo.png",
-              text: 'Sign in with Google',
-              textColor: Colors.black87,
-              color: Colors.white,
-              onPressed: _isLoading ? null : () => _signInWithGoogle(context),
-            ),
-          ),
-          Spacer(),
-          Expanded(
-            child: Text(
-              'or',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2!,
-              textAlign: TextAlign.center,
-            ),
-          ),
           Expanded(
             child: SignInButton(
               text: 'Sign in with email',

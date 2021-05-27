@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:smart_attendance_app/models/course.dart';
-import 'package:smart_attendance_app/screens/course_screen.dart';
+
+import '/models/course.dart';
+import '/models/user.dart';
+import '/screens/faculty/faculty_course_screen.dart';
 
 class CourseCard extends StatelessWidget {
   final Course course;
+  final UserModel user;
+  final Function()? onTap;
 
-  const CourseCard({Key? key, required this.course}) : super(key: key);
+  const CourseCard(
+      {Key? key, required this.course, required this.user, this.onTap})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => CourseScreen(course: course)),
-      ),
+      onTap: onTap == null
+          ? () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => FacultyCourseScreen(course: course)))
+          : onTap,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(

@@ -7,6 +7,7 @@ class Course {
   final String startTime;
   final String endTime;
   final String teacherId;
+  final int lecturesHeld;
   Course({
     this.id,
     required this.name,
@@ -14,6 +15,7 @@ class Course {
     required this.startTime,
     required this.endTime,
     required this.teacherId,
+    required this.lecturesHeld,
   });
 
   Course copyWith({
@@ -23,6 +25,7 @@ class Course {
     String? startTime,
     String? endTime,
     String? teacherId,
+    int? lecturesHeld,
   }) {
     return Course(
       id: id ?? this.id,
@@ -31,6 +34,7 @@ class Course {
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       teacherId: teacherId ?? this.teacherId,
+      lecturesHeld: lecturesHeld ?? this.lecturesHeld,
     );
   }
 
@@ -42,6 +46,7 @@ class Course {
       'startTime': startTime,
       'endTime': endTime,
       'teacherId': teacherId,
+      'lecturesHeld': lecturesHeld,
     };
   }
 
@@ -53,6 +58,7 @@ class Course {
       startTime: map['startTime'],
       endTime: map['endTime'],
       teacherId: map['teacherId'],
+      lecturesHeld: map['lecturesHeld'],
     );
   }
 
@@ -62,29 +68,31 @@ class Course {
 
   @override
   String toString() {
-    return 'Course(id: $id, name: $name, code: $code, startTime: $startTime, endTime: $endTime, teacherId: $teacherId)';
+    return 'Course(id: $id, name: $name, code: $code, startTime: $startTime, endTime: $endTime, teacherId: $teacherId, lecturesHeld: $lecturesHeld)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is Course &&
-        other.id == id &&
-        other.name == name &&
-        other.code == code &&
-        other.startTime == startTime &&
-        other.endTime == endTime &&
-        other.teacherId == teacherId;
+      other.id == id &&
+      other.name == name &&
+      other.code == code &&
+      other.startTime == startTime &&
+      other.endTime == endTime &&
+      other.teacherId == teacherId &&
+      other.lecturesHeld == lecturesHeld;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        name.hashCode ^
-        code.hashCode ^
-        startTime.hashCode ^
-        endTime.hashCode ^
-        teacherId.hashCode;
+      name.hashCode ^
+      code.hashCode ^
+      startTime.hashCode ^
+      endTime.hashCode ^
+      teacherId.hashCode ^
+      lecturesHeld.hashCode;
   }
 }

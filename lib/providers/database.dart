@@ -4,10 +4,15 @@ import 'package:smart_attendance_app/models/user.dart';
 import 'package:smart_attendance_app/services/api_path.dart';
 
 abstract class FirestoreDatabase {
-  Future<void> createCourse(Course course);
   Future<void> setUser(UserModel user);
+  Stream<UserModel> streamUser(String uid);
+  Future<bool> checkUserExists(UserModel user);
+  Future<void> updateUser(Course course, UserModel user);
+  Future<void> createCourse(Course course);
   Future<void> updateCourse(Course course);
+  Future<Course> getCourse(String courseId);
   Stream<List<Course>> streamCourses();
+  Stream<List<Course>> streamFacultyCourses(String teacherId);
 }
 
 class Database implements FirestoreDatabase {
@@ -39,14 +44,71 @@ class Database implements FirestoreDatabase {
       _instance.collection(ApiPath.courses()).snapshots().map(
             (event) => event.docs.map((e) => Course.fromMap(e.data())).toList(),
           );
+  @override
+  Stream<List<Course>> streamFacultyCourses(String teacherId) => _instance
+      .collection(ApiPath.courses())
+      .where('teacherId', isEqualTo: teacherId)
+      .snapshots()
+      .map(
+        (event) => event.docs.map((e) => Course.fromMap(e.data())).toList(),
+      );
 
   @override
   Future<void> setUser(UserModel user) async {
-    DocumentReference _docRef = _instance.doc(ApiPath.faculty(uid: user.uid));
+    DocumentReference _docRef = _instance.doc(ApiPath.user(uid: user.uid));
     _set(_docRef.path, user.toMap());
   }
 
   @override
   Future<void> updateCourse(Course course) async =>
       await _update(ApiPath.course(course.id!), course.toMap());
+
+  @override
+  Future<bool> checkUserExists(UserModel user) async {
+    return _instance
+        .doc(ApiPath.user(uid: user.uid))
+        .get()
+        .then((value) => value.exists);
+  }
+
+  @override
+  Stream<UserModel> streamUser(String uid) => _instance
+      .doc(ApiPath.user(uid: uid))
+      .snapshots()
+      .map((value) => UserModel.fromMap(value.data()!));
+
+  @override
+  Future<Course> getCourse(String courseId) async {
+    DocumentSnapshot<Map<String, dynamic>> value =
+        await _instance.doc(ApiPath.course(courseId)).get();
+    return Course.fromMap(value.data()!);
+  }
+
+  @override
+  Future<void> updateUser(Course course, UserModel user) async {
+    List<String> updatedCoursesList = [...user.enrolledCourses!, course.id!];
+    UserModel upadatedUser = user.copyWith(enrolledCourses: updatedCoursesList);
+    await _update(ApiPath.user(uid: user.uid), upadatedUser.toMap());
+  }
+
+  Future<void> calculateAttendance(Course course, UserModel user) async {
+    var attendance = 0;
+    _instance
+        .collection(ApiPath.attendanceCollection())
+        .snapshots()
+        .map((element) => element.docs.map((e) {
+              // waiting on take attendance implementation
+            }));
+  }
+
+  Future<void> setAttendance(
+      String dateString, UserModel user, Course course) async {
+    DocumentReference _docRef = _instance
+        .collection(ApiPath.courseAttendanceDate(course.id!, dateString))
+        .doc();
+    _set(_docRef.path, {
+      "id": _docRef.id,
+      "studentId": user.uid,
+    });
+  }
 }

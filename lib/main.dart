@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_attendance_app/providers/auth.dart';
 import 'package:smart_attendance_app/providers/database.dart';
 import 'package:smart_attendance_app/screens/entry_screen.dart';
+import 'package:smart_attendance_app/screens/landing_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +28,10 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.limeAccent,
         ),
         home: EntryScreen(),
+        routes: {
+          LandingScreen.routeName: (_) => LandingScreen(),
+          
+        },
       ),
     );
   }

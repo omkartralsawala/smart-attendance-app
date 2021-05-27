@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:smart_attendance_app/models/user.dart';
+import 'package:smart_attendance_app/providers/database.dart';
 
 import '../Validators/validators.dart';
 import '../buttons/submit_button.dart';
@@ -9,12 +11,15 @@ import '../text_fields/custom_text_field.dart';
 
 import '../../providers/auth.dart';
 
-class RegisterEmailForm extends StatefulWidget with Validators {
+class FacultyRegisterEmailForm extends StatefulWidget with Validators {
+  final String userType;
+
+  FacultyRegisterEmailForm({Key? key, required this.userType}) : super(key: key);
   @override
-  _RegisterEmailFormState createState() => _RegisterEmailFormState();
+  _FacultyRegisterEmailFormState createState() => _FacultyRegisterEmailFormState();
 }
 
-class _RegisterEmailFormState extends State<RegisterEmailForm> {
+class _FacultyRegisterEmailFormState extends State<FacultyRegisterEmailForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
@@ -40,8 +45,13 @@ class _RegisterEmailFormState extends State<RegisterEmailForm> {
       _isLoading = true;
     });
     try {
-      final auth = Provider.of<AuthBase>(context);
-      await auth.createUserWithEmailAndPassword(_email, _password);
+      final Auth auth = Provider.of<Auth>(context, listen: false);
+      final Database database = Provider.of<Database>(context, listen: false);
+      final UserModel? user = await auth.createUserWithEmailAndPassword(
+          _email, _password, widget.userType);
+      if (user != null) {
+        await database.setUser(user);
+      }
       Navigator.of(context).pop();
     } on PlatformException catch (e) {
       PlatformExceptionALertDialog(

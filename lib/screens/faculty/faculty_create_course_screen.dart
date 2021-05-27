@@ -8,16 +8,17 @@ import 'package:smart_attendance_app/widgets/appbar/appbar.dart';
 import 'package:smart_attendance_app/widgets/buttons/submit_button.dart';
 import 'package:smart_attendance_app/widgets/text_fields/custom_text_field.dart';
 
-class CreateCourseScreen extends StatefulWidget {
+class FacultyCreateCourseScreen extends StatefulWidget {
   final UserModel userModel;
 
-  const CreateCourseScreen({Key? key, required this.userModel})
+  const FacultyCreateCourseScreen({Key? key, required this.userModel})
       : super(key: key);
   @override
-  _CreateCourseScreenState createState() => _CreateCourseScreenState();
+  _FacultyCreateCourseScreenState createState() =>
+      _FacultyCreateCourseScreenState();
 }
 
-class _CreateCourseScreenState extends State<CreateCourseScreen> {
+class _FacultyCreateCourseScreenState extends State<FacultyCreateCourseScreen> {
   bool _isLoading = false;
   late TimeOfDay startTime;
   late dynamic endTime;
@@ -48,6 +49,7 @@ class _CreateCourseScreenState extends State<CreateCourseScreen> {
         Course(
           name: _name,
           code: _code,
+          lecturesHeld: 0,
           startTime: startTime.format(context).toString(),
           endTime: endTime.format(context).toString(),
           teacherId: widget.userModel.uid,

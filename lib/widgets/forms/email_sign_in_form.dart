@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:smart_attendance_app/screens/authentication/student_email_regiser_screen.dart';
 
 import '../../widgets/Validators/validators.dart';
 import '../../widgets/buttons/submit_button.dart';
 import '../../widgets/dialog_box/platform_exception_alert_dialog.dart';
 import '../../widgets/text_fields/custom_text_field.dart';
 
-import '../../screens/authentication/email_register_screen.dart';
+import '../../screens/authentication/faculty_email_register_screen.dart';
 import '../../screens/authentication/forgot_password_screen.dart';
 
 import '../../providers/auth.dart';
 
 class EmailSignInForm extends StatefulWidget with Validators {
+  final String userType;
+
+  EmailSignInForm({Key? key, required this.userType}) : super(key: key);
   @override
   _EmailSignInFormState createState() => _EmailSignInFormState();
 }
@@ -43,10 +47,9 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       _isLoading = true;
     });
     try {
-      final auth = Provider.of<AuthBase>(context);
-      await auth.signInWithEmailAndPassword(_email, _password);
-
-      Navigator.of(context).pop();
+      final Auth auth = Provider.of<Auth>(context, listen: false);
+      await auth.signInWithEmailAndPassword(_email, _password, widget.userType);
+      Navigator.pop(context);
     } on PlatformException catch (e) {
       PlatformExceptionALertDialog(
         title: 'Sign in failed',
@@ -76,7 +79,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
 
     return [
       Text(
-        'Sign in to your account!',
+        'Sign in to your ${widget.userType} account!',
         style: Theme.of(context).textTheme.headline4!,
       ),
       Padding(
@@ -102,8 +105,14 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         ),
         onPressed: !_isLoading
             ? () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => RegisterEmailPage()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => widget.userType == 'Faculty'
+                        ? FacultyRegisterEmailPage(userType: widget.userType)
+                        : StudentEmailRegisterScreen(userType: widget.userType),
+                  ),
+                );
               }
             : null,
       ),

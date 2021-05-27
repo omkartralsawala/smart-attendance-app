@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import '../screens/landing_screen.dart';
+import 'package:smart_attendance_app/routes/navigation.dart';
 
 class EntryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      // appBar: constantAppBar(),
       body: SafeArea(
         child: Container(
           height: size.height,
           width: size.width,
-          // padding: EdgeInsets.only(bottom: 0.2 * size.height),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,12 +24,7 @@ class EntryScreen extends StatelessWidget {
               Spacer(flex: 2),
               Expanded(
                 child: TextButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => LandingScreen(),
-                    ),
-                  ),
+                  onPressed: () => navigateToLanding(context, "Faculty"),
                   child: SizedBox(
                     width: 0.7 * size.width,
                     child: Center(
@@ -51,7 +44,7 @@ class EntryScreen extends StatelessWidget {
               Spacer(),
               Expanded(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => navigateToLanding(context, "Student"),
                   child: SizedBox(
                     width: 0.7 * size.width,
                     child: Center(
