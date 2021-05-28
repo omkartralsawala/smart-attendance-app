@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:nfc_manager/nfc_manager.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_attendance_app/models/user.dart';
-import 'package:smart_attendance_app/providers/auth.dart';
-import 'package:smart_attendance_app/providers/database.dart';
-import 'package:smart_attendance_app/widgets/appbar/appbar.dart';
-import 'package:smart_attendance_app/widgets/buttons/submit_button.dart';
-import 'package:smart_attendance_app/widgets/text_fields/custom_text_field.dart';
+
+import '/models/user.dart';
+import '/providers/auth.dart';
+import '/providers/database.dart';
+import '/widgets/appbar/appbar.dart';
+import '/widgets/buttons/submit_button.dart';
+import '/widgets/text_fields/custom_text_field.dart';
 
 class StudentEmailRegisterScreen extends StatefulWidget {
   final String userType;
@@ -22,8 +23,6 @@ class StudentEmailRegisterScreen extends StatefulWidget {
 
 class _StudentEmailRegisterScreenState
     extends State<StudentEmailRegisterScreen> {
-  ValueNotifier<dynamic> result = ValueNotifier(null);
-
   bool _isLoading = false;
   String nfcTagId = "2725696041";
   final TextEditingController _nameController = TextEditingController();
@@ -73,14 +72,9 @@ class _StudentEmailRegisterScreenState
   }
 
   void _scan() async {
-    bool _isAvailable = await NfcManager.instance.isAvailable();
-    if (!_isAvailable) {
-      Fluttertoast.showToast(msg: "NFC is not available");
-      return;
-    }
-    NfcManager.instance.startSession(onDiscovered: (NfcTag tag) async {
-      result.value = tag.data;
-      NfcManager.instance.stopSession();
+    NfcData scanData = await FlutterNfcReader.read();
+    setState(() {
+      nfcTagId = scanData.id;
     });
   }
 
@@ -143,10 +137,7 @@ class _StudentEmailRegisterScreenState
                       constantPadding(Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ValueListenableBuilder<dynamic>(
-                              valueListenable: result,
-                              builder: (context, value, child) => Text(nfcTagId,
-                                  style: theme.textTheme.headline5)),
+                          Text(nfcTagId, style: theme.textTheme.headline5),
                           IconButton(
                             onPressed: () => _scan(),
                             icon: Icon(Icons.nfc),

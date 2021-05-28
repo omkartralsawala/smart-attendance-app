@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_attendance_app/routes/navigation.dart';
 import 'package:smart_attendance_app/widgets/appbar/appbar.dart';
-import 'package:smart_attendance_app/widgets/gridview/all_courses_grid.dart';
+// import 'package:smart_attendance_app/widgets/gridview/all_courses_grid.dart';
 import 'package:smart_attendance_app/widgets/gridview/faculty_course_grid.dart';
 import '../../widgets/dialog_box/platform_alert_dialog.dart';
 import '../../providers/auth.dart';
@@ -22,9 +22,17 @@ class _FacultyHomeScreenState extends State<FacultyHomeScreen>
   @override
   void initState() {
     super.initState();
+    checkUserType();
   }
 
-  Future<void> _signOut(BuildContext context) async {
+  void checkUserType() {
+    if (widget.user.userType != "Faculty") {
+      Fluttertoast.showToast(msg: "Student cannot login in Faculty Account");
+      _signOut();
+    }
+  }
+
+  Future<void> _signOut() async {
     try {
       final Auth auth = Provider.of<Auth>(context, listen: false);
       await auth.signOut();
@@ -44,7 +52,7 @@ class _FacultyHomeScreenState extends State<FacultyHomeScreen>
       defaultActionText: 'Logout',
     ).show(context);
     if (didRequestSignOut == true) {
-      _signOut(context);
+      _signOut();
       Navigator.of(context).pop();
     }
   }

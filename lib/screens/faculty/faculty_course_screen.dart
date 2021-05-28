@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:nfc_in_flutter/nfc_in_flutter.dart';
-import 'package:nfc_manager/nfc_manager.dart';
 // import 'package:nfc_manager/platform_tags.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_attendance_app/models/course.dart';
-import 'package:smart_attendance_app/providers/database.dart';
-import 'package:smart_attendance_app/widgets/appbar/appbar.dart';
-import 'package:smart_attendance_app/widgets/ripple_animation.dart';
+// import 'package:smart_attendance_app/models/attendance_entry.dart';
+import 'package:smart_attendance_app/models/user.dart';
+import 'package:smart_attendance_app/widgets/listview/students_list.dart';
+import '/models/course.dart';
+import '/providers/database.dart';
+import '/widgets/appbar/appbar.dart';
+import '/widgets/ripple_animation.dart';
 
 class FacultyCourseScreen extends StatefulWidget {
   final Course course;
@@ -23,10 +25,9 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
   late TimeOfDay endTime;
   dynamic tagData;
   final String today = DateTime.now().toString().split(" ")[0];
-  final NfcManager _instance = NfcManager.instance;
   bool _isLoading = false;
   bool _sensorEnabled = false;
-  bool _supportsNFC = false;
+  bool _scanning = false;
 
   void updateStartTime(TimeOfDay time) => setState(() => startTime = time);
   void updateEndTime(TimeOfDay time) => setState(() => endTime = time);
@@ -82,37 +83,37 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
       startTime = returnTimeOfDay(widget.course.startTime);
       endTime = returnTimeOfDay(widget.course.endTime);
     });
-
-    NFC.isNDEFSupported.then((bool isSupported) {
-      setState(() {
-        _supportsNFC = isSupported;
-      });
-    });
   }
 
   void startNfcSession() async {
-    print(await _instance.isAvailable());
-    print(_supportsNFC);
-    if (!_supportsNFC) {
-      Fluttertoast.showToast(msg: "PNFC not supported");
-    }
+    setState(() => _scanning = true);
+    final Database database = Provider.of<Database>(context, listen: false);
 
-    bool supported = await NFC.isNDEFSupported;
-    print(supported);
-    NFC.readNDEF(
-      once: true,
-      alertMessage: "Hryyyyy",
-      readerMode: NFCNormalReaderMode(),
-    );
-    _instance.startSession(onDiscovered: (NfcTag tag) async {
-      setState(() {
-        tagData = tag.data;
-      });
+    FlutterNfcReader.onTagDiscovered().listen((onData) async {
+      UserModel user = await database.getUser(onData.id);
+      await database.setAttendance(today, user, widget.course);
     });
+    await database
+        .updateCourse(
+          widget.course.copyWith(
+            lecturesHeld: widget.course.lecturesHeld + 1,
+          ),
+        )
+        .whenComplete(
+            () => Fluttertoast.showToast(msg: "Total Lectures incremented"));
+    // UserModel user = await database.getUser("0x29d276a2");
+    // await database.setAttendance(today, user, widget.course);
   }
 
-  void stopNfcSession() {
-    _instance.stopSession();
+  Future<void> stopNfcSession() async {
+    // NfcData data = await FlutterNfcReader.stop();
+    setState(() {
+      _scanning = false;
+    });
+    Navigator.pop(context);
+    print("POP 1");
+    // Navigator.pop(context);
+    // print("POP 2");
   }
 
   @override
@@ -230,25 +231,19 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
                     ],
                   ),
                   Expanded(
-                    flex: 5,
-                    child: Center(
-                      child: _sensorEnabled && tagData == null
-                          ? RipplesAnimation()
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("Today's attendance length"),
-                                // Spacer(),
-                                SizedBox(height: 10),
-                                Text(
-                                  "Attendance",
-                                  style: theme.textTheme.headline4,
-                                ),
-                                if (tagData != null) Text(tagData),
-                              ],
-                            ),
-                    ),
-                  )
+                      flex: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 80),
+                        child: Center(
+                            child: Stack(
+                          children: [
+                            if (_sensorEnabled && _scanning)
+                              Positioned(child: RipplesAnimation()),
+                            StudentList(
+                                dateString: today, course: widget.course),
+                          ],
+                        )),
+                      ))
                 ],
               )
             : Center(
@@ -258,8 +253,10 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           if (_sensorEnabled) {
+            print("Stop");
             stopNfcSession();
           } else {
+            print("Start");
             startNfcSession();
           }
           setState(() => _sensorEnabled = !_sensorEnabled);

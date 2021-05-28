@@ -1,5 +1,6 @@
 // Lsit of courses student has enrolled in
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_attendance_app/models/user.dart';
 import 'package:smart_attendance_app/providers/auth.dart';
@@ -27,6 +28,19 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
       await auth.signOut();
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkUserType();
+  }
+
+  void checkUserType() {
+    if (widget.user.userType != "Student") {
+      Fluttertoast.showToast(msg: "Faculty cannot login in Student Account");
+      _signOut();
     }
   }
 

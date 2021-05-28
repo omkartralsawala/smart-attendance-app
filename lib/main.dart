@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
         home: EntryScreen(),
         routes: {
           LandingScreen.routeName: (_) => LandingScreen(),
-          
         },
       ),
     );

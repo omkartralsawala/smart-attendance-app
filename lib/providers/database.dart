@@ -1,18 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:smart_attendance_app/models/attendance_entry.dart';
 import 'package:smart_attendance_app/models/course.dart';
 import 'package:smart_attendance_app/models/user.dart';
 import 'package:smart_attendance_app/services/api_path.dart';
 
 abstract class FirestoreDatabase {
   Future<void> setUser(UserModel user);
+  Future<UserModel> getUser(String nfcTagId);
   Stream<UserModel> streamUser(String uid);
   Future<bool> checkUserExists(UserModel user);
   Future<void> updateUser(Course course, UserModel user);
+  Future<Course> getCourse(String courseId);
   Future<void> createCourse(Course course);
   Future<void> updateCourse(Course course);
-  Future<Course> getCourse(String courseId);
   Stream<List<Course>> streamCourses();
   Stream<List<Course>> streamFacultyCourses(String teacherId);
+  Future<void> setAttendance(String dateString, UserModel user, Course course);
+  Stream<List<AttendanceEntry>> streamAttendance(
+      String dateString, Course course);
 }
 
 class Database implements FirestoreDatabase {
@@ -101,14 +106,37 @@ class Database implements FirestoreDatabase {
             }));
   }
 
+  @override
   Future<void> setAttendance(
       String dateString, UserModel user, Course course) async {
     DocumentReference _docRef = _instance
-        .collection(ApiPath.courseAttendanceDate(course.id!, dateString))
+        .collection(ApiPath.courseAttendanceDate(course.id!, "2021-05-26"))
         .doc();
+    print("---------------------------------");
+    print(_docRef.path);
+    print("---------------------------------");
     _set(_docRef.path, {
       "id": _docRef.id,
+      "name": user.name,
       "studentId": user.uid,
     });
   }
+
+  @override
+  Future<UserModel> getUser(String nfcTagId) => _instance
+      .collection(ApiPath.users())
+      .where('nfcTag', isEqualTo: nfcTagId)
+      .get()
+      .then((value) => UserModel.fromMap(value.docs.first.data()));
+
+  @override
+  Stream<List<AttendanceEntry>> streamAttendance(
+          String dateString, Course course) =>
+      _instance
+          .collection(ApiPath.courseAttendanceDate(course.id!, dateString))
+          .snapshots()
+          .map((event) => event.docs
+              .map((e) => AttendanceEntry.fromMap(e.data()))
+              .toList());
+  
 }

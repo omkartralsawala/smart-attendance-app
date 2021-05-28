@@ -38,11 +38,11 @@ class _RipplesAnimationState extends State<RipplesAnimation>
         return Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            _buildContainer(150 * _controller.value),
-            _buildContainer(200 * _controller.value),
-            _buildContainer(250 * _controller.value),
-            _buildContainer(300 * _controller.value),
-            _buildContainer(350 * _controller.value),
+            _buildContainer(175 * _controller.value),
+            _buildContainer(225 * _controller.value),
+            _buildContainer(275 * _controller.value),
+            _buildContainer(325 * _controller.value),
+            _buildContainer(375 * _controller.value),
             Align(
                 child: Icon(
               Icons.nfc,

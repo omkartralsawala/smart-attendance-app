@@ -125,6 +125,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_nfc_reader:
+    dependency: "direct main"
+    description:
+      name: flutter_nfc_reader
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -205,20 +212,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  nfc_in_flutter:
-    dependency: "direct main"
-    description:
-      name: nfc_in_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.5"
-  nfc_manager:
-    dependency: "direct main"
-    description:
-      name: nfc_manager
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0+2"
   path:
     dependency: transitive
     description:
