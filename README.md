@@ -2,6 +2,10 @@
 
 Smart Attendance App
 
+
+v1.0.0+6
+adding reports to faculty section
+
 v1.0.0+5
 NFC implemented 
 Attendance implemented

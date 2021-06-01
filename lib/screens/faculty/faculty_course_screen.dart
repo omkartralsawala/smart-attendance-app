@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-// import 'package:nfc_manager/platform_tags.dart';
 import 'package:provider/provider.dart';
-// import 'package:smart_attendance_app/models/attendance_entry.dart';
-import 'package:smart_attendance_app/models/user.dart';
-import 'package:smart_attendance_app/widgets/listview/students_list.dart';
+import 'package:smart_attendance_app/screens/faculty/faculty_report_Screen.dart';
+
+import '/models/user.dart';
+import '/widgets/listview/students_list.dart';
 import '/models/course.dart';
 import '/providers/database.dart';
 import '/widgets/appbar/appbar.dart';
@@ -101,19 +101,15 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
         )
         .whenComplete(
             () => Fluttertoast.showToast(msg: "Total Lectures incremented"));
-    // UserModel user = await database.getUser("0x29d276a2");
-    // await database.setAttendance(today, user, widget.course);
   }
 
   Future<void> stopNfcSession() async {
-    // NfcData data = await FlutterNfcReader.stop();
+    await FlutterNfcReader.stop();
     setState(() {
       _scanning = false;
     });
     Navigator.pop(context);
     print("POP 1");
-    // Navigator.pop(context);
-    // print("POP 2");
   }
 
   @override
@@ -124,6 +120,14 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
       appBar: constantAppBar(
         showBackButton: true,
         actionWidgets: [
+          IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => FacultyReportScreen(course: widget.course)),
+            ),
+            icon: Icon(Icons.data_usage),
+          ),
           if (_timeUpdated)
             IconButton(
               onPressed: _submit,

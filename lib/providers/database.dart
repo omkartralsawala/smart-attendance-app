@@ -96,16 +96,6 @@ class Database implements FirestoreDatabase {
     await _update(ApiPath.user(uid: user.uid), upadatedUser.toMap());
   }
 
-  Future<void> calculateAttendance(Course course, UserModel user) async {
-    var attendance = 0;
-    _instance
-        .collection(ApiPath.attendanceCollection())
-        .snapshots()
-        .map((element) => element.docs.map((e) {
-              // waiting on take attendance implementation
-            }));
-  }
-
   @override
   Future<void> setAttendance(
       String dateString, UserModel user, Course course) async {
@@ -138,5 +128,4 @@ class Database implements FirestoreDatabase {
           .map((event) => event.docs
               .map((e) => AttendanceEntry.fromMap(e.data()))
               .toList());
-  
 }

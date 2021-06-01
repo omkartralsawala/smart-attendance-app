@@ -125,6 +125,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_nfc_reader:
     dependency: "direct main"
     description:
@@ -170,6 +175,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.0"
+  horizontal_calendar_widget:
+    dependency: "direct main"
+    description:
+      name: horizontal_calendar_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   http_parser:
     dependency: transitive
     description:
@@ -178,7 +190,7 @@ packages:
     source: hosted
     version: "4.0.0"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"

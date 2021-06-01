@@ -28,7 +28,7 @@ class StudentList extends StatelessWidget {
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Today's attendance length",
+                      Text("Today's attendance",
                           style: theme.textTheme.headline5),
                       Text("${data!.length}", style: theme.textTheme.headline4),
                     ],
