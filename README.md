@@ -2,17 +2,22 @@
 
 Smart Attendance App
 
+v1.0.0+7
+nfc fixes
+
+v1.0.0+6-fix
+fixing nfc session start and adding toasts
 
 v1.0.0+6
 adding reports to faculty section
 
 v1.0.0+5
-NFC implemented 
+NFC implemented
 Attendance implemented
-awaiting final testing 
+awaiting final testing
 
 v1.0.0+4
-NFC ready 
+NFC ready
 Student Flow and UI Completed
 awaiting testing on real card
 
@@ -25,7 +30,7 @@ v1.0.0+2
 live data
 create course
 course validation
-course card(Grid View) 
+course card(Grid View)
 
 v1.0.0+1
 boilerplate code setup

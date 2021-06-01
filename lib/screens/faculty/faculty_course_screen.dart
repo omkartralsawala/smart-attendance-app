@@ -88,28 +88,40 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
   void startNfcSession() async {
     setState(() => _scanning = true);
     final Database database = Provider.of<Database>(context, listen: false);
+    Fluttertoast.showToast(msg: "Session started");
+    try {
+      FlutterNfcReader.onTagDiscovered().listen(
+        (onData) async {
+          Fluttertoast.showToast(msg: "Tag Detected");
+          UserModel user = await database.getUser(onData.id);
+          Fluttertoast.showToast(msg: "User Found");
+          await database.setAttendance(today, user, widget.course);
 
-    FlutterNfcReader.onTagDiscovered().listen((onData) async {
-      UserModel user = await database.getUser(onData.id);
-      await database.setAttendance(today, user, widget.course);
-    });
-    await database
-        .updateCourse(
-          widget.course.copyWith(
-            lecturesHeld: widget.course.lecturesHeld + 1,
-          ),
-        )
-        .whenComplete(
-            () => Fluttertoast.showToast(msg: "Total Lectures incremented"));
+          await database
+              .updateCourse(
+                widget.course.copyWith(
+                  lecturesHeld: widget.course.lecturesHeld + 1,
+                ),
+              )
+              .whenComplete(() =>
+                  Fluttertoast.showToast(msg: "Total Lectures incremented"));
+        },
+      );
+    } catch (error) {
+      Fluttertoast.showToast(msg: error.toString());
+    }
   }
 
   Future<void> stopNfcSession() async {
-    await FlutterNfcReader.stop();
-    setState(() {
-      _scanning = false;
+    FlutterNfcReader.stop().then((value) {
+      Fluttertoast.showToast(msg: "Session Stoped");
+      print(value);
+      setState(() {
+        _scanning = false;
+      });
+      Navigator.pop(context);
+      print("POP 1");
     });
-    Navigator.pop(context);
-    print("POP 1");
   }
 
   @override

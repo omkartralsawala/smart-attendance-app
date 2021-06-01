@@ -100,7 +100,7 @@ class Database implements FirestoreDatabase {
   Future<void> setAttendance(
       String dateString, UserModel user, Course course) async {
     DocumentReference _docRef = _instance
-        .collection(ApiPath.courseAttendanceDate(course.id!, "2021-05-26"))
+        .collection(ApiPath.courseAttendanceDate(course.id!, dateString))
         .doc();
     print("---------------------------------");
     print(_docRef.path);
