@@ -1,0 +1,100 @@
+{
+  "project_info": {
+    "project_number": "524142545180",
+    "project_id": "smart-attendance-app-71fe7",
+    "storage_bucket": "smart-attendance-app-71fe7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524142545180:android:ba241208341f6d1f0f12d9",
+        "android_client_info": {
+          "package_name": "com.edithautotech.smart_attendance_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524142545180-1nafomlts1d2odao4o4j37igm12f2klj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edithautotech.smart_attendance_app",
+            "certificate_hash": "2a76e2119ac94eb027022d3b6114d4a1ec5ccdcd"
+          }
+        },
+        {
+          "client_id": "524142545180-nltoqfgbgenmjv67bpgj89nbosadc2j7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edithautotech.smart_attendance_app",
+            "certificate_hash": "b580e5132e0d57bf4cf4c546098e3c751b9461a3"
+          }
+        },
+        {
+          "client_id": "524142545180-015ltqmeilgi09uvb2r5nmdmgjbrnlpi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnhzT3rJiC55p50unbhUQ59-bw1S_OWU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524142545180-015ltqmeilgi09uvb2r5nmdmgjbrnlpi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524142545180:android:952d529dff27dbee0f12d9",
+        "android_client_info": {
+          "package_name": "com.example.student_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524142545180-iamq3noh774og0o5o45o87pfvb3nlra4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.student_app",
+            "certificate_hash": "2a76e2119ac94eb027022d3b6114d4a1ec5ccdcd"
+          }
+        },
+        {
+          "client_id": "524142545180-olv23i4fuoo2qjv0qlfbfarkt5bnsbus.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.student_app",
+            "certificate_hash": "b580e5132e0d57bf4cf4c546098e3c751b9461a3"
+          }
+        },
+        {
+          "client_id": "524142545180-015ltqmeilgi09uvb2r5nmdmgjbrnlpi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnhzT3rJiC55p50unbhUQ59-bw1S_OWU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524142545180-015ltqmeilgi09uvb2r5nmdmgjbrnlpi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

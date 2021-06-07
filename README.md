@@ -2,6 +2,11 @@
 
 Smart Attendance App
 
+v1.0.0+8
+code split in two apps
+-- Faculty App (v1.0.0+7)
+-- Student App (v1.0.0+1)
+
 v1.0.0+7
 nfc fixes
 
