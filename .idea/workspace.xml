@@ -1,167 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="NONE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e30577d-91e6-4890-ba34-3768223e42b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/.metadata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/google-services.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/debug/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/kotlin/com/edithautotech/smart_attendance_app/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/res/drawable-v21/launch_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/res/values-night/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/app/src/profile/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/android/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/fonts/Poppins-Bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/fonts/Poppins-Medium.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/fonts/Poppins-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/fonts/Poppins-SemiBold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/2.0x/_DS_Store" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/2.0x/facebook-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/2.0x/google-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/3.0x/_DS_Store" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/3.0x/facebook-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/3.0x/google-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/_DS_Store" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/google-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/assets/images/placeholder.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Flutter/Debug.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Flutter/Release.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/AppDelegate.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Base.lproj/Main.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/main.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/models/attendance_entry.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/models/course.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/models/user.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/providers/auth.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/providers/database.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/routes/navigation.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/authentication/email_sign_in_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/authentication/faculty_email_register_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/authentication/forgot_password_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/authentication/sign_in_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/authentication/student_email_regiser_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/entry_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/faculty/faculty_course_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/faculty/faculty_create_course_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/faculty/faculty_home_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/faculty/faculty_report_Screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/landing_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/student/student_course_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/screens/student/student_home_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/services/api_path.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/Validators/validators.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/appbar/appbar.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/buttons/custom_raised_button.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/buttons/sign_in_button.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/buttons/social_sign_in_button.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/buttons/submit_button.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/card/attendance_card.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/card/course_card.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/dialog_box/platform_alert_dialog.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/dialog_box/platform_exception_alert_dialog.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/dialog_box/platform_widget.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/forms/email_sign_in_form.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/forms/faculty_email_register_form.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/forms/forgot_password_form.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/forms/student_email_register_form.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/gridview/all_courses_grid.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/gridview/enrolled_courses_grid.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/gridview/faculty_course_grid.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/listview/students_list.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/ripple_animation.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/lib/widgets/text_fields/custom_text_field.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/pubspec.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/pubspec.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/smart-attendance-app/test/widget_test.dart" beforeDir="false" />
-    </list>
+    <list default="true" id="6696edfa-825f-4de4-8fe3-20358615aa51" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/smart-attendance-app" />
-  </component>
-  <component name="ProjectId" id="1tcw8Zh91SQszaMWdqOyLEw9Lb1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ProjectId" id="1t1NCdb54NM44wUGmfiNeYguFg9" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2e30577d-91e6-4890-ba34-3768223e42b5" name="Default Changelist" comment="" />
-      <created>1623081533772</created>
+      <changelist id="6696edfa-825f-4de4-8fe3-20358615aa51" name="Default Changelist" comment="" />
+      <created>1621932509026</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1623081533772</updated>
+      <updated>1621932509026</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="855" y="203" width="850" height="646" key="new project wizard" timestamp="1623085002985">
-      <screen x="0" y="0" width="2560" height="1040" />
-    </state>
-    <state x="855" y="203" width="850" height="646" key="new project wizard/0.0.2560.1040/365.-1080.1920.1040@0.0.2560.1040" timestamp="1623085002985" />
   </component>
 </project>
