@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_attendance_app/models/user.dart';
@@ -14,9 +15,11 @@ import '../../providers/auth.dart';
 class FacultyRegisterEmailForm extends StatefulWidget with Validators {
   final String userType;
 
-  FacultyRegisterEmailForm({Key? key, required this.userType}) : super(key: key);
+  FacultyRegisterEmailForm({Key? key, required this.userType})
+      : super(key: key);
   @override
-  _FacultyRegisterEmailFormState createState() => _FacultyRegisterEmailFormState();
+  _FacultyRegisterEmailFormState createState() =>
+      _FacultyRegisterEmailFormState();
 }
 
 class _FacultyRegisterEmailFormState extends State<FacultyRegisterEmailForm> {
@@ -53,11 +56,8 @@ class _FacultyRegisterEmailFormState extends State<FacultyRegisterEmailForm> {
         await database.setUser(user);
       }
       Navigator.of(context).pop();
-    } on PlatformException catch (e) {
-      PlatformExceptionALertDialog(
-        title: 'Sign in failed',
-        exception: e,
-      ).show(context);
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
     } finally {
       setState(() {
         _isLoading = false;

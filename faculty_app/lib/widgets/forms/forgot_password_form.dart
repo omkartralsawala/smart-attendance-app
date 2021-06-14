@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
@@ -93,11 +94,8 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     try {
       await auth.resetPassword(_email);
       Navigator.of(context).pop();
-    } on PlatformException catch (e) {
-      PlatformExceptionALertDialog(
-        title: 'sending reset email failed',
-        exception: e,
-      ).show(context);
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
     } finally {
       setState(() {
         _isLoading = false;

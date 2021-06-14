@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_attendance_app/screens/authentication/student_email_regiser_screen.dart';
@@ -50,11 +51,8 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       final Auth auth = Provider.of<Auth>(context, listen: false);
       await auth.signInWithEmailAndPassword(_email, _password, widget.userType);
       Navigator.pop(context);
-    } on PlatformException catch (e) {
-      PlatformExceptionALertDialog(
-        title: 'Sign in failed',
-        exception: e,
-      ).show(context);
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
     } finally {
       setState(() {
         _isLoading = false;

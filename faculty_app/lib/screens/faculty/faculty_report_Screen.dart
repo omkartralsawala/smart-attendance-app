@@ -72,7 +72,10 @@ class _FacultyReportScreenState extends State<FacultyReportScreen> {
                           List<AttendanceEntry>? data = snapshot.data;
                           return ListView(
                             children: data!
-                                .map((e) => AttendanceCard(entry: e))
+                                .map((e) => AttendanceCard(
+                                      entry: e,
+                                      course: widget.course,
+                                    ))
                                 .toList(),
                           );
                         }

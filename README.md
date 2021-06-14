@@ -2,6 +2,11 @@
 
 Smart Attendance App
 
+v1.0.0+9
+-- Faculty App (v1.0.0+8)
+    toasts on email sign in and register pages
+    total attendance for each student
+
 v1.0.0+8
 code split in two apps
 -- Faculty App (v1.0.0+7)

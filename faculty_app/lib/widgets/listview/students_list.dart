@@ -41,7 +41,10 @@ class StudentList extends StatelessWidget {
                         children: data
                             .map((e) => Padding(
                                   padding: const EdgeInsets.all(4.0),
-                                  child: AttendanceCard(entry: e),
+                                  child: AttendanceCard(
+                                    entry: e,
+                                    course: course,
+                                  ),
                                 ))
                             .toList(),
                       ))
