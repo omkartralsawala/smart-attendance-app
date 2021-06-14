@@ -85,11 +85,6 @@ class _StudentEmailRegisterScreenState
       _isLoading = true;
     });
     try {
-      print("----------------------");
-      print("email is" + _email);
-      print("name is " + _name);
-      print("password is " + _password);
-      print("confirm pasword is " + _confirmPassword);
       UserModel? user = await auth.createUserWithEmailAndPassword(
           _email, _password, widget.userType);
       if (user != null) {
