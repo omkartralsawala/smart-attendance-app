@@ -99,13 +99,22 @@ class Database implements FirestoreDatabase {
   @override
   Future<void> setAttendance(
       String dateString, UserModel user, Course course) async {
-    DocumentReference _docRef = _instance
-        .collection(ApiPath.courseAttendanceDate(course.id!, dateString))
-        .doc();
-    _set(_docRef.path, {
-      "id": _docRef.id,
-      "name": user.name,
-      "studentId": user.uid,
+    CollectionReference _collectionReference = _instance
+        .collection(ApiPath.courseAttendanceDate(course.id!, dateString));
+    _collectionReference
+        .where("studentId", isEqualTo: user.uid)
+        .get()
+        .then((value) {
+      if (value.docs.length > 0) {
+        throw "Student attendance has already been marked";
+      } else {
+        DocumentReference _docRef = _collectionReference.doc();
+        _set(_docRef.path, {
+          "id": _docRef.id,
+          "name": user.name,
+          "studentId": user.uid,
+        });
+      }
     });
   }
 

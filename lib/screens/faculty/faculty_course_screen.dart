@@ -95,15 +95,19 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
           Fluttertoast.showToast(msg: "Tag Detected");
           UserModel user = await database.getUser(onData.id);
           Fluttertoast.showToast(msg: "User Found");
-          await database.setAttendance(today, user, widget.course).then(
-              (value) async => await database
-                  .updateCourse(
-                    widget.course.copyWith(
-                      lecturesHeld: widget.course.lecturesHeld + 1,
-                    ),
-                  )
-                  .whenComplete(() => Fluttertoast.showToast(
-                      msg: "Total Lectures incremented")));
+          try {
+            await database.setAttendance(today, user, widget.course).then(
+                (value) async => await database
+                    .updateCourse(
+                      widget.course.copyWith(
+                        lecturesHeld: widget.course.lecturesHeld + 1,
+                      ),
+                    )
+                    .whenComplete(() => Fluttertoast.showToast(
+                        msg: "Total Lectures incremented")));
+          } catch (err) {
+            Fluttertoast.showToast(msg: err.toString());
+          }
         },
       );
     } catch (error) {
