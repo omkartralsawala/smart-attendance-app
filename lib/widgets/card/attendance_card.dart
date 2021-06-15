@@ -61,28 +61,32 @@ class _AttendanceCardState extends State<AttendanceCard> {
   Widget build(BuildContext context) {
     final TextTheme theme = Theme.of(context).textTheme;
     return Card(
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              children: [
-                Text(
-                  widget.entry.name,
-                  style: theme.headline4,
-                ),
-                Text(
-                  widget.entry.id,
-                  style: theme.bodyText2,
-                ),
-              ],
+      child: !_isLoading
+          ? Container(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        widget.entry.name,
+                        style: theme.headline4,
+                      ),
+                      Text(
+                        widget.entry.id,
+                        style: theme.bodyText2,
+                      ),
+                    ],
+                  ),
+                  Text(lecturesAttended.toString())
+                ],
+              ),
+            )
+          : Center(
+              child: CircularProgressIndicator(),
             ),
-            Text(lecturesAttended.toString())
-          ],
-        ),
-      ),
     );
   }
 }

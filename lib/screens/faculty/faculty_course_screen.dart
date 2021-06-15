@@ -95,16 +95,15 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
           Fluttertoast.showToast(msg: "Tag Detected");
           UserModel user = await database.getUser(onData.id);
           Fluttertoast.showToast(msg: "User Found");
-          await database.setAttendance(today, user, widget.course);
-
-          await database
-              .updateCourse(
-                widget.course.copyWith(
-                  lecturesHeld: widget.course.lecturesHeld + 1,
-                ),
-              )
-              .whenComplete(() =>
-                  Fluttertoast.showToast(msg: "Total Lectures incremented"));
+          await database.setAttendance(today, user, widget.course).then(
+              (value) async => await database
+                  .updateCourse(
+                    widget.course.copyWith(
+                      lecturesHeld: widget.course.lecturesHeld + 1,
+                    ),
+                  )
+                  .whenComplete(() => Fluttertoast.showToast(
+                      msg: "Total Lectures incremented")));
         },
       );
     } catch (error) {
@@ -115,18 +114,15 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
   Future<void> stopNfcSession() async {
     FlutterNfcReader.stop().then((value) {
       Fluttertoast.showToast(msg: "Session Stoped");
-      print(value);
       setState(() {
         _scanning = false;
       });
       Navigator.pop(context);
-      print("POP 1");
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(today);
     final ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: constantAppBar(
@@ -269,10 +265,8 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           if (_sensorEnabled) {
-            print("Stop");
             stopNfcSession();
           } else {
-            print("Start");
             startNfcSession();
           }
           setState(() => _sensorEnabled = !_sensorEnabled);

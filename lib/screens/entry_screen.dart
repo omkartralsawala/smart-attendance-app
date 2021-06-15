@@ -11,34 +11,47 @@ class EntryScreen extends StatelessWidget {
     return Scaffold(
       appBar: constantAppBar(),
       body: SafeArea(
-        child: Column(children: [
-          Text("Select Login Type"),
-          Spacer(),
-          SubmitButton(
-            text: "Faculty Login",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => LandingScreen(
-                          userType: "Faculty",
-                        )),
-              );
-            },
-          ),
-          SubmitButton(
-            text: "Student Login",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => LandingScreen(
-                          userType: "Student",
-                        )),
-              );
-            },
-          ),
-        ]),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Center(child: Text("Select Login Type")),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50.0, bottom: 10.0),
+                  child: SubmitButton(
+                    text: "Faculty Login",
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => LandingScreen(
+                                  userType: "Faculty",
+                                )),
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 20),
+                  child: SubmitButton(
+                    text: "Student Login",
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => LandingScreen(
+                                  userType: "Student",
+                                )),
+                      );
+                    },
+                  ),
+                ),
+              ]),
+        ),
       ),
     );
   }

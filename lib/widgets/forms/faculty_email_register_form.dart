@@ -7,7 +7,6 @@ import 'package:smart_attendance_app/providers/database.dart';
 
 import '../Validators/validators.dart';
 import '../buttons/submit_button.dart';
-import '../dialog_box/platform_exception_alert_dialog.dart';
 import '../text_fields/custom_text_field.dart';
 
 import '../../providers/auth.dart';

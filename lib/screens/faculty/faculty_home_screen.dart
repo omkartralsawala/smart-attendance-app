@@ -37,7 +37,7 @@ class _FacultyHomeScreenState extends State<FacultyHomeScreen>
       final Auth auth = Provider.of<Auth>(context, listen: false);
       await auth.signOut();
     } catch (e) {
-      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
     }
   }
 
@@ -53,7 +53,6 @@ class _FacultyHomeScreenState extends State<FacultyHomeScreen>
     ).show(context);
     if (didRequestSignOut == true) {
       _signOut();
-      // Navigator.of(context).pop();
     }
   }
 

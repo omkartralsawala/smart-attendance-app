@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:horizontal_calendar_widget/horizontal_calendar.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_attendance_app/models/attendance_entry.dart';
@@ -32,8 +33,6 @@ class _FacultyReportScreenState extends State<FacultyReportScreen> {
   Widget build(BuildContext context) {
     final Database database = Provider.of<Database>(context, listen: false);
     final String dateString = _selectedDate.toString().split(" ")[0];
-    print(dateString);
-    print('----------------------------');
     return Scaffold(
       appBar: constantAppBar(showBackButton: true),
       body: SafeArea(

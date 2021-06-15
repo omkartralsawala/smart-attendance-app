@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 import '../../widgets/Validators/validators.dart';
 import '../../widgets/buttons/submit_button.dart';
-import '../../widgets/dialog_box/platform_exception_alert_dialog.dart';
 import '../../widgets/text_fields/custom_text_field.dart';
 
 import '../../providers/auth.dart';

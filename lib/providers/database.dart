@@ -102,9 +102,6 @@ class Database implements FirestoreDatabase {
     DocumentReference _docRef = _instance
         .collection(ApiPath.courseAttendanceDate(course.id!, dateString))
         .doc();
-    print("---------------------------------");
-    print(_docRef.path);
-    print("---------------------------------");
     _set(_docRef.path, {
       "id": _docRef.id,
       "name": user.name,

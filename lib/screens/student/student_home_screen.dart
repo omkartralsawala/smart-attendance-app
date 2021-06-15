@@ -27,7 +27,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
       final Auth auth = Provider.of<Auth>(context, listen: false);
       await auth.signOut();
     } catch (e) {
-      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
     }
   }
 
@@ -63,7 +63,6 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final Database database = Provider.of<Database>(context, listen: false);
-    print(widget.user);
     final ThemeData theme = Theme.of(context);
     return StreamBuilder<UserModel>(
         stream: database.streamUser(widget.user.uid),
