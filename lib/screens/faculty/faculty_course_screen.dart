@@ -23,8 +23,10 @@ class FacultyCourseScreen extends StatefulWidget {
 class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
   late TimeOfDay startTime;
   late TimeOfDay endTime;
+  DateTime selectedDate = DateTime.now();
+
   dynamic tagData;
-  final String today = DateTime.now().toString().split(" ")[0];
+
   bool _isLoading = false;
   bool _sensorEnabled = false;
   bool _scanning = false;
@@ -48,6 +50,16 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
     if (time != null) {
       handler(time);
     }
+  }
+
+  Future<void> _showDateTime() async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate)
+      setState(() => selectedDate = picked);
   }
 
   TimeOfDay returnTimeOfDay(String dateString) {
@@ -96,15 +108,19 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
           UserModel user = await database.getUser(onData.id);
           Fluttertoast.showToast(msg: "User Found");
           try {
-            await database.setAttendance(today, user, widget.course).then(
-                (value) async => await database
-                    .updateCourse(
-                      widget.course.copyWith(
-                        lecturesHeld: widget.course.lecturesHeld + 1,
-                      ),
-                    )
-                    .whenComplete(() => Fluttertoast.showToast(
-                        msg: "Total Lectures incremented")));
+            await database
+                .setAttendance(
+                    selectedDate.toString().split(" ")[0], user, widget.course)
+                .then(
+                  (value) async => await database
+                      .updateCourse(
+                        widget.course.copyWith(
+                          lecturesHeld: widget.course.lecturesHeld + 1,
+                        ),
+                      )
+                      .whenComplete(() => Fluttertoast.showToast(
+                          msg: "Total Lectures incremented")),
+                );
           } catch (err) {
             Fluttertoast.showToast(msg: err.toString());
           }
@@ -118,9 +134,7 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
   Future<void> stopNfcSession() async {
     FlutterNfcReader.stop().then((value) {
       Fluttertoast.showToast(msg: "Session Stoped");
-      setState(() {
-        _scanning = false;
-      });
+      setState(() => _scanning = false);
       Navigator.pop(context);
     });
   }
@@ -131,12 +145,13 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
     return Scaffold(
       appBar: constantAppBar(
         showBackButton: true,
-        actionWidgets: [
+        actionWidgets: <Widget>[
           IconButton(
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => FacultyReportScreen(course: widget.course)),
+                builder: (_) => FacultyReportScreen(course: widget.course),
+              ),
             ),
             icon: Icon(Icons.data_usage),
           ),
@@ -155,17 +170,13 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
                     [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          "Course Name",
-                          style: theme.textTheme.headline5,
-                        ),
+                        child: Text("Course Name",
+                            style: theme.textTheme.headline5),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Text(
-                          widget.course.name,
-                          style: theme.textTheme.headline4,
-                        ),
+                        child: Text(widget.course.name,
+                            style: theme.textTheme.headline4),
                       )
                     ],
                   ),
@@ -173,19 +184,30 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
                     [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          "Course Code",
-                          style: theme.textTheme.headline5,
-                        ),
+                        child: Text("Course Code",
+                            style: theme.textTheme.headline5),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Text(
-                          widget.course.code,
-                          style: theme.textTheme.headline4,
-                        ),
+                        child: Text(widget.course.code,
+                            style: theme.textTheme.headline4),
                       )
                     ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                    child: GestureDetector(
+                      onTap: () => _showDateTime(),
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        color: theme.primaryColor,
+                        child: Text(
+                          selectedDate.toString().split(" ")[0],
+                          style: theme.textTheme.headline6!
+                              .copyWith(color: Colors.white, fontSize: 15),
+                        ),
+                      ),
+                    ),
                   ),
                   rowElement(
                     [
@@ -256,7 +278,9 @@ class _FacultyCourseScreenState extends State<FacultyCourseScreen> {
                             if (_sensorEnabled && _scanning)
                               Positioned(child: RipplesAnimation()),
                             StudentList(
-                                dateString: today, course: widget.course),
+                                dateString:
+                                    selectedDate.toString().split(" ")[0],
+                                course: widget.course),
                           ],
                         )),
                       ))

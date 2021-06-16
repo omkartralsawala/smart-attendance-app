@@ -1,6 +1,10 @@
 # smart_attendance_app
 
 Smart Attendance App
+
+v1.0.1+11
+fixing set attendance issue
+
 v1.0.1+10
 Merging apks
 

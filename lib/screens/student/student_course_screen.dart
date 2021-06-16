@@ -29,15 +29,15 @@ class _StudentCourseScreenState extends State<StudentCourseScreen> {
         .collection(ApiPath.attendanceCollection())
         .snapshots()
         .map((attendanceEvent) {
-      // attendanceEvent.docs.forEach((element) {
-      //   print(element.id);
-      // });
+      attendanceEvent.docs.forEach((element) {
+        print(element.id);
+      });
 
       return attendanceEvent.docs.map((attendanceDoc) async {
         print(attendanceDoc.id);
         print(widget.user.uid);
         bool docExists = await FirebaseFirestore.instance
-            .collection(ApiPath.courseAttendanceDate(
+            .collection(ApiPath.courseAttendanceDateRecord(
                 widget.course.id!, attendanceDoc.id))
             .where('studentId', isEqualTo: widget.user.uid)
             .get()
@@ -45,7 +45,7 @@ class _StudentCourseScreenState extends State<StudentCourseScreen> {
         print(docExists);
         if (docExists) {
           setState(() {
-            lecturesAttended = lecturesAttended += 1;
+            lecturesAttended = lecturesAttended + 1;
           });
         }
         print("Inner Loop" + lecturesAttended.toString());
@@ -58,13 +58,14 @@ class _StudentCourseScreenState extends State<StudentCourseScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
     fetchAttendance();
   }
 
   calcAttendance(int totalLectures, int attendedLectures) =>
       ((attendedLectures / totalLectures) * 100).roundToDouble();
+
   @override
   Widget build(BuildContext context) {
     final TextTheme theme = Theme.of(context).textTheme;

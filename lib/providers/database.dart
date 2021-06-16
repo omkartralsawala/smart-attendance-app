@@ -99,16 +99,31 @@ class Database implements FirestoreDatabase {
   @override
   Future<void> setAttendance(
       String dateString, UserModel user, Course course) async {
-    CollectionReference _collectionReference = _instance
-        .collection(ApiPath.courseAttendanceDate(course.id!, dateString));
-    _collectionReference
+    final CollectionReference _recordCollectionReference = _instance
+        .collection(ApiPath.courseAttendanceDateRecord(course.id!, dateString));
+    final DocumentReference _courseDocumentReference =
+        _instance.doc(ApiPath.courseAttendanceDocument(dateString, course.id!));
+    final DocumentReference _dateDocReference =
+        _instance.doc(ApiPath.attedanceDateDocument(dateString));
+
+    bool dateDcoumentExists =
+        await _dateDocReference.get().then((value) => value.exists);
+    if (!dateDcoumentExists) {
+      _set(_dateDocReference.path, {"date": dateString});
+    }
+    bool courseDocumentExists =
+        await _courseDocumentReference.get().then((value) => value.exists);
+    if (!courseDocumentExists) {
+      _set(_courseDocumentReference.path, {"name": course.name});
+    }
+    _recordCollectionReference
         .where("studentId", isEqualTo: user.uid)
         .get()
         .then((value) {
       if (value.docs.length > 0) {
         throw "Student attendance has already been marked";
       } else {
-        DocumentReference _docRef = _collectionReference.doc();
+        DocumentReference _docRef = _recordCollectionReference.doc();
         _set(_docRef.path, {
           "id": _docRef.id,
           "name": user.name,
@@ -129,7 +144,8 @@ class Database implements FirestoreDatabase {
   Stream<List<AttendanceEntry>> streamAttendance(
           String dateString, Course course) =>
       _instance
-          .collection(ApiPath.courseAttendanceDate(course.id!, dateString))
+          .collection(
+              ApiPath.courseAttendanceDateRecord(course.id!, dateString))
           .snapshots()
           .map((event) => event.docs
               .map((e) => AttendanceEntry.fromMap(e.data()))

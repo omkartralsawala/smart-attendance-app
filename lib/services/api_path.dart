@@ -14,6 +14,10 @@ class ApiPath {
   static String course(String id) => '/courses/$id';
 
   static String attendanceCollection() => '/attendance';
-  static String courseAttendanceDate(String id, String dateString) =>
+  static String attedanceDateDocument(String dateString) =>
+      '/attendance/$dateString';
+  static String courseAttendanceDocument(String dateString, String courseId) =>
+      '/attendance/$dateString/courses/$courseId';
+  static String courseAttendanceDateRecord(String id, String dateString) =>
       '/attendance/$dateString/courses/$id/record';
 }
